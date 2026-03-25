@@ -47,6 +47,7 @@ import {
   Clock,
   Send,
   MessageCircle,
+  Bot,
   Mic,
   MicOff,
   FolderOpen,
@@ -1943,6 +1944,12 @@ export default function LegalAssistant() {
               <Button size="sm" variant="ghost" className="gap-1 text-xs text-muted-foreground" data-testid="button-go-playground">
                 <Code2 className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">Códigos</span>
+              </Button>
+            </Link>
+            <Link href="/robo-juridico">
+              <Button size="sm" variant="ghost" className="gap-1 text-xs text-muted-foreground" data-testid="button-go-robot">
+                <Bot className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Robô</span>
               </Button>
             </Link>
             <Link href="/filtrador">

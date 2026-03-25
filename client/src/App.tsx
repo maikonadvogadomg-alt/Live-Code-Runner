@@ -90,6 +90,7 @@ import PrevidenciarioPage from "@/pages/previdenciario";
 import LoginPage from "@/pages/login";
 import PlaygroundPython from "@/pages/playground-python";
 import PlaygroundReact from "@/pages/playground-react";
+import RoboJuridicoPage from "@/pages/robo-juridico";
 
 function Router() {
   return (
@@ -99,6 +100,7 @@ function Router() {
       <Route path="/playground" component={Playground} />
       <Route path="/playground-python" component={PlaygroundPython} />
       <Route path="/playground-react" component={PlaygroundReact} />
+      <Route path="/robo-juridico" component={RoboJuridicoPage} />
       <Route path="/token" component={TokenGenerator} />
       <Route path="/comparador" component={ComparadorJuridico} />
       <Route path="/auditoria" component={AuditoriaFinanceira} />
