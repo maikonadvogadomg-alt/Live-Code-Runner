@@ -1,0 +1,125 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+}
+
+.App-header h1 {
+  margin: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.editor-section, .output-section, .snippets-section {
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.editor-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.editor-controls button {
+  padding: 8px 16px;
+  background-color: #61dafb;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.editor-controls button:hover {
+  background-color: #21a9c7;
+}
+
+.editor-controls button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.save-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.save-controls input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.output-section h2, .snippets-section h2 {
+  margin-top: 0;
+}
+
+.output-box {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 15px;
+  min-height: 100px;
+  max-height: 200px;
+  overflow-y: auto;
+  text-align: left;
+  white-space: pre-wrap;
+}
+
+.snippets-list {
+  list-style: none;
+  padding: 0;
+}
+
+.snippets-list li {
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.snippets-list li:hover {
+  background-color: #f0f0f0;
+}
+
+.snippets-list h3 {
+  margin: 0 0 5px 0;
+  color: #333;
+}
+
+.snippets-list p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.snippets-list small {
+  color: #999;
+}

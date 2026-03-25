@@ -1,0 +1,11 @@
+{
+  "outputDirectory": "dist/public",
+  "buildCommand": "npm run build",
+  "installCommand": "npm install",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

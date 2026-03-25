@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - DATABASE_URL=postgres://user:password@db:5432/live_code_runner
+      - POSTGRES_URL=postgres://user:password@db:5432/live_code_runner
+      - PORT=5000
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=live_code_runner
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database-setup.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  postgres_data:

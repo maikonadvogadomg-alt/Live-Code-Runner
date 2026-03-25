@@ -1,0 +1,4 @@
+{
+    "chat.agentSessionProjection.enabled": true,
+    "chat.unifiedAgentsBar.enabled": true
+}

@@ -1,0 +1,45 @@
+{
+  "configuracao": {
+    "frequencia_execucao": "diaria", // opções: 'manual', 'diaria', 'semanal', 'horaria'
+    "horario_execucao": "09:00", // formato HH:MM (apenas para execução programada)
+    "dias_da_semana": ["segunda", "terca", "quarta", "quinta", "sexta"], // para execução semanal
+    "notificacoes": {
+      "por_email": true,
+      "destinatarios": ["admin@escritorio.com"],
+      "assunto_sucesso": "Robô Jurídico: Execução concluída com sucesso",
+      "assunto_erro": "Robô Jurídico: Erro na execução"
+    },
+    "log": {
+      "nivel": "info", // opções: 'debug', 'info', 'warning', 'error'
+      "arquivo": "logs/robo_juridico.log",
+      "manter_dias": 30
+    },
+    "timeout_segundos": 300,
+    "retries": 3,
+    "delay_entre_retries": 10
+  },
+  "integracoes": {
+    "google_drive": {
+      "habilitado": false,
+      "pasta_id": "",
+      "nome_arquivo": "{data}_{cliente}_{processo}.pdf"
+    },
+    "gmail": {
+      "habilitado": true,
+      "assunto": "[Intimação] Publicação no processo {processo}",
+      "template": "Olá {cliente},\n\nIdentificamos uma nova publicação no processo {processo}:\n\n- Início da sessão: {inicio}\n- Fim da sessão: {fim}\n- Prazo oral (48h): {prazo}\n\nTexto da publicação:\n{texto}\n\nAtenciosamente,\n\nEquipe Jurídica"
+    },
+    "webhook": {
+      "habilitado": false,
+      "url": "",
+      "metodo": "POST",
+      "headers": {}
+    }
+  },
+  "filtros": {
+    "tribunais": [], // ex: ["TJMG", "TRF1"] - vazio significa todos
+    "classes_processuais": [], // ex: ["AÇÃO CIVIL PÚBLICA", "EXECUÇÃO FISCAL"] - vazio significa todas
+    "palavras_chave": [], // ex: ["penhora", "arresto", "liminar"] - vazio significa todas
+    "excluir_palavras": [] // ex: ["certidão", "comunicado"] - vazio significa nenhuma
+  }
+}
