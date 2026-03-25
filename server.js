@@ -81,7 +81,7 @@ app.post('/api/run-code', async (req, res) => {
 
 // Save a code snippet
 app.post('/api/save-code', async (req, res) => {
-  const { title, code } = req.body;
+  const { title, code, mode } = req.body;
   
   if (!title || !code) {
     return res.status(400).json({ error: 'Title and code are required' });
@@ -89,8 +89,8 @@ app.post('/api/save-code', async (req, res) => {
   
   try {
     const result = await pool.query(
-      'INSERT INTO code_snippets (title, code) VALUES ($1, $2) RETURNING *',
-      [title, code]
+      'INSERT INTO snippets (title, js, mode) VALUES ($1, $2, $3) RETURNING *',
+      [title, code, mode || 'js']
     );
     
     res.json(result.rows[0]);
@@ -99,15 +99,20 @@ app.post('/api/save-code', async (req, res) => {
   }
 });
 
-// Get all code snippets
-app.get('/api/code-snippets', async (req, res) => {
+// Get all snippets
+async function getAllSnippets(res) {
   try {
-    const result = await pool.query('SELECT * FROM code_snippets ORDER BY created_at DESC');
+    const result = await pool.query('SELECT * FROM snippets ORDER BY id DESC');
     res.json(result.rows);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to retrieve code snippets' });
+    res.status(500).json({ error: 'Failed to retrieve snippets' });
   }
-});
+}
+
+app.get('/api/get-snippets', (req, res) => getAllSnippets(res));
+
+// Legacy alias
+app.get('/api/code-snippets', (req, res) => getAllSnippets(res));
 
 // Serve the React app for any other routes
 app.get('*', (req, res) => {
