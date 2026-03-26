@@ -363,6 +363,30 @@ run();
             }}
           />
         </div>
+  const exportTxt = () => download("filtrado.txt", outText);
+  const exportJson = () => download("filtrado.json", JSON.stringify({ createdAt: new Date().toISOString(), output: outText, stats }, null, 2), "application/json");
+  const exportMarkdown = () => download("filtrado.md", outText, "text/markdown;charset=utf-8");
+  const exportWord = () => {
+    const paragraphs = outText.split(/\n\n+/);
+    let body = "";
+    for (const p of paragraphs) {
+      if (!p.trim()) continue;
+      const safe = escapeHtml(p.trim());
+      body += `<p style="font-family:'Times New Roman',serif;font-size:12pt;line-height:1.5;margin-bottom:12pt;">${safe}</p>`;
+    }
+    const html = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word'><head><meta charset='utf-8'></head><body>${body}</body></html>`;
+    download("filtrado.doc", html, "application/msword");
+  };
+  const copyText = async () => {
+    try {
+      await navigator.clipboard.writeText(outText);
+      toast({ title: "Texto copiado!", description: "Pode colar no Word (Ctrl+V)" });
+    } catch {
+      toast({ title: "Erro ao copiar", variant: "destructive" });
+    }
+  };
+  const exportRemovedTxt = () => download("removidos.txt", removed.map((r, i) => `${i + 1}. [${r.motivo}]\n${r.texto}`).join("\n\n"));
+  const exportRemovedJson = () => download("removidos.json", JSON.stringify(removed, null, 2), "application/json");
 
         {/* Preview / Output */}
         <div className="flex flex-col w-1/2">
